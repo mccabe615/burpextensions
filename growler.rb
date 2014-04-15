@@ -245,8 +245,8 @@ class BurpExtender
 
   def newScanIssue(issue)
     notification = Growl.new
-    notification.message = "#{issue.getUrl}: #{issue.getIssueName()} #{issue.getSeverity()}"
-    notification.sticky!
+    notification.title = issue.getIssueName()
+    notification.message = "#{issue.getSeverity()}: #{issue.getUrl}}"
     notification.run
   end
 end
