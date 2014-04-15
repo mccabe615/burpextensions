@@ -219,6 +219,7 @@ end
 
 include Growl
 
+
 require 'java'
 java_import 'burp.IBurpExtender'
 java_import 'burp.IScannerListener'
@@ -243,6 +244,9 @@ class BurpExtender
   end
 
   def newScanIssue(issue)
-    notify issue.getIssueName()
+    notification = Growl.new
+    notification.message = "#{issue.getUrl}: #{issue.getIssueName()} #{issue.getSeverity()}"
+    notification.sticky!
+    notification.run
   end
 end
